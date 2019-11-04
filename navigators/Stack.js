@@ -13,7 +13,7 @@ const Stack = createStackNavigator(
   },
   {
     initialRouteName: 'Stack1',
-    mode: 'card', // 'card' or 'modal'
+    mode: 'modal', // 'card' or 'modal'
   },
 );
 

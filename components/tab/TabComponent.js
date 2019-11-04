@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, Button, Image, StyleSheet } from 'react-native';
+import { View, Text, Button, Image, StyleSheet,ActivityIndicator, FlatList, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class TabComponent extends React.Component {
   constructor(props) {
     super(props);
-
+    super(props);
+    this.state = {isLoading: true}
     this.goToTab = this.goToTab.bind(this);
   }
 
@@ -13,12 +15,91 @@ class TabComponent extends React.Component {
     this.props.navigation.navigate('Tab1');
   }
 
-  render() {
+  FlatListItemSeparator = () => {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          {this.props.text}
-        </Text>
+      <View style={{ height: 1, width: "100%", backgroundColor: "#607D8B" }} />
+    );
+  };
+
+  actionOnRow(item) {
+    console.log('Selected Item :',item.title);
+   
+ }
+
+  componentDidMount() {
+    return fetch('https://min-api.cryptocompare.com/data/news/')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log('getNews-Done:', responseJson);
+          this.setState({
+            isLoading: false,
+            dataSource: responseJson,
+          }, function(){
+  
+          });
+  
+        })
+        .catch((error) =>{
+          console.error(error);
+        });
+  }
+
+  render() {
+
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    // return (
+    //   <View style={styles.container}>
+    //     <Text style={styles.text}>
+    //       {this.props.text}
+    //     </Text>
+    //   </View>
+    // );
+
+    return(
+      <View style={{flex: 1, paddingTop:20, paddingLeft:10}}>
+        <FlatList
+          data={this.state.dataSource}
+          ItemSeparatorComponent = {this.FlatListItemSeparator}
+          renderItem={({item}) => (
+            <TouchableOpacity style={styles.item}
+            onPress={ () => this.actionOnRow(item)}>
+            {/* <Text style={styles.textWhite}>{item.rank}</Text> */}
+            <View style = {{ flexDirection: 'row', flexWrap: 'nowrap', marginTop: 10}}>
+            <Image style={styles.image} source={{uri: item.source_info.img}}/>
+            <View style = {{flex: 1, flexDirection: 'column', alignItems : 'flex-start',alignContent: 'flex-start'}}>
+            <Text style={styles.textWhite}>{item.title}</Text>
+            <Text style={styles.textTime}>{"1 day ago"}</Text>
+            {/* <Text style={styles.textWhite}>{"1 ngay truoc"}</Text>
+            <Text style={styles.textWhite}>{"1 ngay truoc"}</Text>
+            <Text style={styles.textWhite}>{"1 ngay truoc"}</Text> */}
+              </View>
+          
+            </View>
+            <View style = {{ flexDirection: 'row', flexWrap: 'nowrap',
+             justifyContent: 'flex-start', position: 'absolute',
+             bottom: 10, alignItems: 'center'}}>
+            <Text style={styles.textStatistic}>{"bullish:"}</Text>
+            <Icon name="arrow-up" size={15} color="gray" />
+            <Text style={styles.textStatistic3}>{item.upvotes}</Text>
+            <Text style={styles.textStatistic2}>{"bearish:"}</Text>
+            <Icon name="arrow-down" size={15} color="gray" />
+            <Text style={styles.textStatistic3}>{item.downvotes}</Text>
+            </View>
+            
+            {/* <Text style={this.StyleTextPercent(item.percent_change_24h)}>{item.percent_change_24h}{'%'}</Text>
+            <Text style={this.StyleTextPercent(item.percent_change_24h)}>{'$'}{item.price_usd}</Text> */}
+            </TouchableOpacity>
+
+          )}
+          keyExtractor={({id}, index) => id}
+        />
       </View>
     );
   }
@@ -32,8 +113,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
   },
 
   text: {
@@ -45,6 +126,52 @@ const styles = StyleSheet.create({
   buttonContainer: {
     padding: 15,
   },
+
+  item: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    // alignItems: 'center',
+    alignContent: 'center',
+    height: 140,
+    flexWrap: 'wrap'
+  },
+  textWhite: {
+    color: 'white',
+    textAlign: 'justify',
+    fontSize: 17,
+    marginLeft: 10,
+    marginRight: 5
+   
+  },
+  textTime: {
+    color: 'gray',
+    textAlign: 'justify',
+    fontSize: 15,
+    marginLeft: 10,
+   
+  },
+  textStatistic: {
+    color: 'gray',
+    textAlign: 'justify',
+    fontSize: 15,
+    marginLeft: 0,
+    
+  },
+  textStatistic2: {
+    color: 'gray',
+    textAlign: 'justify',
+    fontSize: 15,
+    marginLeft: 30,
+    
+  },
+  textStatistic3: {
+    color: 'gray',
+    textAlign: 'justify',
+    fontSize: 15,
+    marginLeft: 10,
+    
+  }
 });
 
 export default withNavigation(TabComponent);
