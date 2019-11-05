@@ -6,7 +6,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class TabComponent extends React.Component {
   constructor(props) {
     super(props);
-    super(props);
     this.state = {isLoading: true}
     this.goToTab = this.goToTab.bind(this);
   }
@@ -21,10 +20,69 @@ class TabComponent extends React.Component {
     );
   };
 
-  actionOnRow(item) {
-    console.log('Selected Item :',item.title);
-   
+  actionOnRow(item, index) {
+    console.log('Selected Item :',index);
+    this.props.navigation.push('WebView', {
+      link: item.url
+    });
  }
+
+_renderItem = (item, index) => {
+  if(index > 0) {
+      return (
+        <TouchableOpacity style={styles.item}
+        onPress={ () => this.actionOnRow(item, index)}>
+        {/* <Text style={styles.textWhite}>{item.rank}</Text> */}
+        <View style = {{ flexDirection: 'row', flexWrap: 'nowrap', marginTop: 10}}>
+        <Image style={styles.image} source={{uri: item.source_info.img}}/>
+        <View style = {{flex: 1, flexDirection: 'column', alignItems : 'flex-start',alignContent: 'flex-start'}}>
+        <Text style={styles.textWhite}>{item.title}</Text>
+        <Text style={styles.textTime}>{"1 day ago"}</Text>
+        </View>
+      
+        </View>
+        <View style = {{ flexDirection: 'row', flexWrap: 'nowrap',
+         justifyContent: 'flex-start', position: 'absolute',
+         bottom: 10, alignItems: 'center'}}>
+        <Text style={styles.textStatistic}>{"bullish:"}</Text>
+        <Icon name="arrow-up" size={15} color="gray" />
+        <Text style={styles.textStatistic3}>{item.upvotes}</Text>
+        <Text style={styles.textStatistic2}>{"bearish:"}</Text>
+        <Icon name="arrow-down" size={15} color="gray" />
+        <Text style={styles.textStatistic3}>{item.downvotes}</Text>
+        </View>
+        
+        </TouchableOpacity>
+      );
+  } else {
+      return (
+        <TouchableOpacity style={styles.item}
+        onPress={ () => this.actionOnRow(item, index)}>
+        {/* <Text style={styles.textWhite}>{item.rank}</Text> */}
+        <View style = {{ flexDirection: 'row', flexWrap: 'nowrap', marginTop: 10}}>
+        <Image style={{width: 100,height: 100,
+  }} source={{uri: item.source_info.img}}/>
+        <View style = {{flex: 1, flexDirection: 'column', alignItems : 'flex-start',alignContent: 'flex-start'}}>
+        <Text style={styles.textWhite}>{item.title}</Text>
+        <Text style={styles.textTime}>{"1 day ago"}</Text>
+        </View>
+      
+        </View>
+        <View style = {{ flexDirection: 'row', flexWrap: 'nowrap',
+         justifyContent: 'flex-start', position: 'absolute',
+         bottom: 10, alignItems: 'center'}}>
+        <Text style={styles.textStatistic}>{"bullish:"}</Text>
+        <Icon name="arrow-up" size={15} color="gray" />
+        <Text style={styles.textStatistic3}>{item.upvotes}</Text>
+        <Text style={styles.textStatistic2}>{"bearish:"}</Text>
+        <Icon name="arrow-down" size={15} color="gray" />
+        <Text style={styles.textStatistic3}>{item.downvotes}</Text>
+        </View>
+        
+        </TouchableOpacity>
+      );
+  }
+};
 
   componentDidMount() {
     return fetch('https://min-api.cryptocompare.com/data/news/')
@@ -67,35 +125,31 @@ class TabComponent extends React.Component {
         <FlatList
           data={this.state.dataSource}
           ItemSeparatorComponent = {this.FlatListItemSeparator}
-          renderItem={({item}) => (
-            <TouchableOpacity style={styles.item}
-            onPress={ () => this.actionOnRow(item)}>
-            {/* <Text style={styles.textWhite}>{item.rank}</Text> */}
-            <View style = {{ flexDirection: 'row', flexWrap: 'nowrap', marginTop: 10}}>
-            <Image style={styles.image} source={{uri: item.source_info.img}}/>
-            <View style = {{flex: 1, flexDirection: 'column', alignItems : 'flex-start',alignContent: 'flex-start'}}>
-            <Text style={styles.textWhite}>{item.title}</Text>
-            <Text style={styles.textTime}>{"1 day ago"}</Text>
-            {/* <Text style={styles.textWhite}>{"1 ngay truoc"}</Text>
-            <Text style={styles.textWhite}>{"1 ngay truoc"}</Text>
-            <Text style={styles.textWhite}>{"1 ngay truoc"}</Text> */}
-              </View>
+          renderItem={({item, index}) => (
+            this._renderItem(item, index)
+            // <TouchableOpacity style={styles.item}
+            // onPress={ () => this.actionOnRow(item, index)}>
+            // {/* <Text style={styles.textWhite}>{item.rank}</Text> */}
+            // <View style = {{ flexDirection: 'row', flexWrap: 'nowrap', marginTop: 10}}>
+            // <Image style={styles.image} source={{uri: item.source_info.img}}/>
+            // <View style = {{flex: 1, flexDirection: 'column', alignItems : 'flex-start',alignContent: 'flex-start'}}>
+            // <Text style={styles.textWhite}>{item.title}</Text>
+            // <Text style={styles.textTime}>{"1 day ago"}</Text>
+            // </View>
           
-            </View>
-            <View style = {{ flexDirection: 'row', flexWrap: 'nowrap',
-             justifyContent: 'flex-start', position: 'absolute',
-             bottom: 10, alignItems: 'center'}}>
-            <Text style={styles.textStatistic}>{"bullish:"}</Text>
-            <Icon name="arrow-up" size={15} color="gray" />
-            <Text style={styles.textStatistic3}>{item.upvotes}</Text>
-            <Text style={styles.textStatistic2}>{"bearish:"}</Text>
-            <Icon name="arrow-down" size={15} color="gray" />
-            <Text style={styles.textStatistic3}>{item.downvotes}</Text>
-            </View>
+            // </View>
+            // <View style = {{ flexDirection: 'row', flexWrap: 'nowrap',
+            //  justifyContent: 'flex-start', position: 'absolute',
+            //  bottom: 10, alignItems: 'center'}}>
+            // <Text style={styles.textStatistic}>{"bullish:"}</Text>
+            // <Icon name="arrow-up" size={15} color="gray" />
+            // <Text style={styles.textStatistic3}>{item.upvotes}</Text>
+            // <Text style={styles.textStatistic2}>{"bearish:"}</Text>
+            // <Icon name="arrow-down" size={15} color="gray" />
+            // <Text style={styles.textStatistic3}>{item.downvotes}</Text>
+            // </View>
             
-            {/* <Text style={this.StyleTextPercent(item.percent_change_24h)}>{item.percent_change_24h}{'%'}</Text>
-            <Text style={this.StyleTextPercent(item.percent_change_24h)}>{'$'}{item.price_usd}</Text> */}
-            </TouchableOpacity>
+            // </TouchableOpacity>
 
           )}
           keyExtractor={({id}, index) => id}

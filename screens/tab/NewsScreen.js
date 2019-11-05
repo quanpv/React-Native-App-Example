@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import TabComponent from '../../components/tab/TabComponent';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class NewsScreen extends React.Component {
   render() {
@@ -15,7 +16,8 @@ class NewsScreen extends React.Component {
 NewsScreen.navigationOptions = {
   tabBarLabel: 'News',
   tabBarIcon: () => (
-    <Image source={require('../../assets/images/newspaper.png')} />
+    // <Image source={require('../../assets/images/newspaper.png')} />
+    <Icon name="newspaper-o" size={25} color="gray" />
   ),
   gesturesEnabled: false,
 };
