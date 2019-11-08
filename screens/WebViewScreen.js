@@ -8,6 +8,7 @@ class WebViewScreen extends React.Component {
     return (
       <View style={styles.container}>
         <WebViewComponent link= {navigation.getParam('link', '')}/>
+        {/* <WebViewComponent link= {'https://bancas.mic.vn/bhhd_thongke.aspx'}/>  */}
       </View>
     );
   }

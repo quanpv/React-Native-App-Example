@@ -7,6 +7,8 @@
 
 #import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
+#import "RNFirebaseNotifications.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
 

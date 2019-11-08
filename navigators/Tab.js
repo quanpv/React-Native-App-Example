@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import {createAppContainer} from 'react-navigation'
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
 import { Image } from 'react-native';
 import HomeScreen from '../screens/tab/HomeScreen';
@@ -8,6 +8,7 @@ import NewsScreen from '../screens/tab/NewsScreen';
 import Stack from './Stack';
 import WebViewScreen from '../screens/WebViewScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import LoginScreen from '../screens/login/LoginScreen';
 
 Stack.navigationOptions = {
   tabBarLabel: 'Home',
@@ -63,6 +64,16 @@ const StackWebView = createStackNavigator(
   },
 );
 
-const AppContainer = createAppContainer(StackWebView);
+const App = createSwitchNavigator({
+  Login: {
+    screen: LoginScreen
+  },
+  Main: {
+    screen: StackWebView
+  }
+  
+});
+
+const AppContainer = createAppContainer(App);
 
 export default AppContainer;

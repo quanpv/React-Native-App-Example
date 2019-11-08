@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>123936737583-o7rq59oujc7bpamk1p449k55vrduv98q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.123936737583-o7rq59oujc7bpamk1p449k55vrduv98q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAx7ZUnrA3Thb9mMNwFoseRY7gp8DlZP4k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>123936737583</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.AwesomeProject</string>
+	<key>PROJECT_ID</key>
+	<string>rnappexample</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rnappexample.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:123936737583:ios:927f27c11cc163378f79da</string>
+	<key>DATABASE_URL</key>
+	<string>https://rnappexample.firebaseio.com</string>
+</dict>
+</plist>
