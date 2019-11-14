@@ -69,7 +69,7 @@ const CustomDrawerContentComponent = (props) => (
   </Header>
   <Content>
   <ListContentDrawer/>
-  <DrawerItems {...props}/>
+  {/* <DrawerItems {...props}/> */}
   </Content>
   </Container>
 )
@@ -92,8 +92,9 @@ const StackWebView = createStackNavigator(
 
 const AppMain = createDrawerNavigator(
  { 
-  //  Nhapdon: MenuItemScreen,
-  MainTabs: StackWebView
+   NhaTN: MenuItemScreen,
+   ItemScreen: MenuItemScreen,
+   MainTabs: StackWebView
  },
   {
     contentComponent: CustomDrawerContentComponent

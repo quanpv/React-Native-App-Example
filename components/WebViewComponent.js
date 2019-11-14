@@ -18,6 +18,7 @@ class WebViewComponent extends React.Component {
     return (
        <WebView 
       //  source={{ uri: 'https://www.google.com/' }}
+      //  style = {styles.container}
        source={{uri: this.props.link}}
        javaScriptEnabled={true}
        domStorageEnabled={true}
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+ 
   },
 
   image: {

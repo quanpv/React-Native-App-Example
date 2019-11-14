@@ -6,8 +6,9 @@ import {
   FlatList,
   LayoutAnimation
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-export class ExpandableList extends Component {
+class ExpandableList extends Component {
 
   constructor(props) {
 
@@ -88,7 +89,8 @@ export class ExpandableList extends Component {
             {renderGroupListItem && renderGroupListItem({
               item: listItem,
               rowId: index,
-              groupId
+              groupId,
+              navigation: this.props
             })}
           </View>
         ))}
@@ -176,3 +178,5 @@ export class ExpandableList extends Component {
     return strategy[implementedBy]();
   }
 }
+
+export default withNavigation(ExpandableList);
