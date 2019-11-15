@@ -61,7 +61,7 @@ import {withNavigation, NavigationActions} from 'react-navigation';
   }
 
   componentDidMount() {
-    return fetch('http://192.168.137.25:3000/listMenu')
+    return fetch('http://192.168.137.159:3000/listMenu')
         .then((response) => response.json())
         .then((responseJson) => {
           console.log('listMenu-done', responseJson[0].groupList[0].sub_title);
@@ -79,7 +79,7 @@ import {withNavigation, NavigationActions} from 'react-navigation';
         });
   }
 
-  navigateToScreen ( route, link ) {
+  navigateToScreen ( route, link, title ) {
     const navigateAction = NavigationActions.navigate({
         routeName: route
     });
@@ -87,7 +87,8 @@ import {withNavigation, NavigationActions} from 'react-navigation';
     //   link: link
     // });
     this.props.navigation.navigate(route, {
-      link: link
+      link: link,
+      title: title
     });
 }
 
@@ -111,7 +112,9 @@ import {withNavigation, NavigationActions} from 'react-navigation';
 
 _onPressItem(item, groupId, rowId) {
   console.log('_onPressItem--------->',this.state.dataSource[groupId].groupList[rowId].link)
- this.navigateToScreen('ItemScreen', this.state.dataSource[groupId].groupList[rowId].link);
+  var item = this.state.dataSource[groupId].groupList[rowId]
+  this.props.navigation.closeDrawer()
+  this.navigateToScreen('ItemScreen', item.link, item.sub_title);
 // this.props.navigation.dispatch(navigateActionTabs);
     // else if(rowId == 1) this.navigateToScreen('NhaTN');
     // this.props.navigation.dispatch(navigateActionNTN);

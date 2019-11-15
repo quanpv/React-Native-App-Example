@@ -15,6 +15,7 @@ class WebViewComponent extends React.Component {
   }
 
   render() {
+    console.log('WebViewComponent',this.props.link)
     return (
        <WebView 
       //  source={{ uri: 'https://www.google.com/' }}
