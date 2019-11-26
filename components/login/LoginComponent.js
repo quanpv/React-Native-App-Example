@@ -29,16 +29,21 @@ class LoginComponent extends React.Component {
   render() {
     return (
       // <View style={styles.container}>
-        <ImageBackground style={styles.backgroundImage} source={{uri: "https://bancas.mic.vn/images/background.jpeg"}}>
+        <ImageBackground style={styles.backgroundImage} 
+        // source={{uri: "https://bancas.mic.vn/images/background.jpeg"}}
+        source={require('../../assets/images/backround_login.jpg')}
+        >
           <Image style={styles.image} source={{uri: "https://bancas.mic.vn/images/logo.png"}}/>
           <View style={styles.container}>
           <TextInput style={styles.textInput1}
            placeholder="Tài khoản"
+           placeholderTextColor="#7a819b"
            onChangeText={(text) => this.setState({textTK:text})}
            value={this.state.textTK}/>
           <TextInput style={styles.textInput2}
           secureTextEntry={true}
           placeholder="Mật khẩu"
+          placeholderTextColor="#7a819b"
           onChangeText={(text) => this.setState({textMK:text})}
           value={this.state.textMK}/>
           <TouchableHighlight style={{width: "90%",borderRadius: 7,
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 250,
     width: '90%',
-    backgroundColor: 'white',
+    backgroundColor: '#212b46',
     borderRadius: 10
   },
   backgroundImage: {
@@ -94,7 +99,9 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 50, 
     marginTop: 40,
-    borderColor: 'gray', 
+    color: "white",
+    borderColor: '#151932',
+    backgroundColor: '#1b2139', 
     borderWidth: 1,
     borderRadius: 7, 
   },
@@ -102,7 +109,9 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 50, 
     marginTop: 20,
-    borderColor: 'gray', 
+    color: "white",
+    borderColor: '#151932', 
+    backgroundColor: '#1b2139', 
     borderWidth: 1,
     borderRadius: 7, 
   },

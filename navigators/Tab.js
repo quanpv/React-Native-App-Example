@@ -13,6 +13,7 @@ import LoginScreen from '../screens/login/LoginScreen';
 import MenuItemScreen from '../screens/drawer/MenuItemScreen';
 import {Container, Content, Header, Body } from 'native-base';
 import ListContentDrawer from '../components/drawer/ListContentDrawer'
+import HotProductScreen from '../screens/hotproduct/HotProductScreen';
 
 Stack.navigationOptions = {
   tabBarLabel: 'Home',
@@ -101,12 +102,28 @@ const AppMain = createDrawerNavigator(
   }
 );
 
+const StackMain = createStackNavigator(
+  {
+    Hot: {
+      screen: HotProductScreen
+    },
+    Main: {
+      screen: AppMain
+    },
+  },
+  {
+    initialRouteName: 'Hot',
+    mode: 'modal', // 'card' or 'modal'
+    headerMode: 'none'
+  },
+);
+
 const App = createSwitchNavigator({
   Login: {
     screen: LoginScreen
   },
   Main: {
-    screen: AppMain
+    screen: StackMain
   }
   
 });

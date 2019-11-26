@@ -61,7 +61,7 @@ import {withNavigation, NavigationActions} from 'react-navigation';
   }
 
   componentDidMount() {
-    return fetch('http://192.168.137.159:3000/listMenu')
+    return fetch('http://10.2.8.50:3000/listMenu')
         .then((response) => response.json())
         .then((responseJson) => {
           console.log('listMenu-done', responseJson[0].groupList[0].sub_title);
