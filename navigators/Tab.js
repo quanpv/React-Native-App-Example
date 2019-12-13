@@ -120,7 +120,7 @@ const StackMain = createStackNavigator(
 
 const App = createSwitchNavigator({
   Login: {
-    screen: LoginScreen
+    screen: WebViewScreen
   },
   Main: {
     screen: StackMain

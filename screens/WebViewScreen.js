@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet,SafeAreaView } from 'react-native';
 import WebViewComponent from '../components/WebViewComponent';
 
 class WebViewScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-        <WebViewComponent link= {navigation.getParam('link', '')}/>
+      <SafeAreaView style={styles.container}>
+        <WebViewComponent link= {navigation.getParam('link', 'https://bancastest.mic.vn:8082/')}/>
         {/* <WebViewComponent link= {'https://bancas.mic.vn/bhhd_thongke.aspx'}/>  */}
-      </View>
+      </SafeAreaView>
     );
   }
 }
